@@ -1,4 +1,4 @@
---Made by Granita
+--Made by Hirari_Tear edited by average Growtopia animator, credits to expro for the GUI--
 
 local player = game.Players.LocalPlayer
 local character1 = player.Character
@@ -274,7 +274,7 @@ text.ZIndex = 4
 
 text.Font = "Garamond"
 
-text.Text = "This was made by RcDZ."
+text.Text = "This was made by Granita."
 
 text.TextColor3 = Color3.fromRGB(255, 255, 255)
 
