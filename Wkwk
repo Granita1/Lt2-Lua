@@ -1,0 +1,48 @@
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextButton = Instance.new("TextButton")
+
+
+ScreenGui.Parent = game.CoreGui
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.new(5,5,5)
+Frame.BorderColor3 = Color3.new(0.67451, 0.211765, 0.152941)
+Frame.Position = UDim2.new(0.293040276, 0, 0.491666675, 0)
+Frame.Size = UDim2.new(0.2,0.2,0.2)
+Frame.Active = true
+Frame.Draggable = true
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.new(5,5,5)
+TextButton.BackgroundTransparency = 0.80000001192093
+TextButton.Position = UDim2.new(0.103524067, 0, 0.200333327, 0)
+TextButton.Size = UDim2.new(0.8,0.9,0.6)
+TextButton.Font = Enum.Font.SourceSansLight
+TextButton.FontSize = Enum.FontSize.Size14
+TextButton.Text = "Aim"
+TextButton.TextScaled = true
+TextButton.TextSize = 8
+TextButton.TextWrapped = true
+
+run = false
+TextButton.MouseButton1Click:connect(function()
+run = not run
+
+local plrs = game:service("Players")
+local ms = plrs.LocalPlayer:GetMouse()
+local nearest = function()
+local plr,dist = nil,5000
+for k,l in pairs(plrs:GetPlayers()) do
+local pos = l.Character:GetPrimaryPartCFrame().p
+local len = (ms.Hit.p - pos).Magnitude
+if len <= dist then
+plr = l
+dist = len
+end
+end
+return plr.Character:GetPrimaryPartCFrame().p
+end
+workspace.CurrentCamera.trash.ChildAdded:connect(function(c)
+c.CFrame = CFrame.new(nearest())
+end)
